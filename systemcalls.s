@@ -20,17 +20,17 @@
 ; THE SOFTWARE.
 ;
 
-section .data:
-    inputMsg db "Enter Your Name: "
+section .data
+    inputMsg db "Enter a number: "
     lenInputMsg equ $ - inputMsg
 
     outputMsg db "You have entered: "
     lenOutputMsg equ $ - outputMsg
 
-section .bss:
+section .bss
     num resb 5
 
-section .text:
+section .text
     global _start
 
 _start:
@@ -52,6 +52,12 @@ _start:
     mov eax, 4            ;                     Syscall 4 = sys_write
     int 0x80              ; Call Kernel
     
+    mov edx, 5
+    mov ecx, num
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
 
     mov eax, 1            ;                     Syscall 1 = sys_exit
+    mov ebx, 0
     int 0x80
