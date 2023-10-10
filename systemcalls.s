@@ -52,11 +52,11 @@ _start:
     mov eax, 4            ;                     Syscall 4 = sys_write
     int 0x80              ; Call Kernel
     
-    mov edx, 5
-    mov ecx, num
-    mov ebx, 1
-    mov eax, 4
-    int 0x80
+    mov edx, 5            ; Len of num (num in .bss is 5 so 5) 
+    mov ecx, num          ; Message to write (num)
+    mov ebx, 1            ; Stdout
+    mov eax, 4            ;                     Syscall 4 = sys_write
+    int 0x80              ; Call Kernel
 
     mov eax, 1            ;                     Syscall 1 = sys_exit
     mov ebx, 0
