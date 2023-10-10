@@ -19,3 +19,10 @@
 ; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ; THE SOFTWARE.
 ;
+
+section .data:
+    inputMsg db "Enter Your Name: "
+    lenInputMsg equ $ - inputMsg
+
+    outputMsg db "You have entered: "
+    lenOutputMsg equ $ - outputMsg
