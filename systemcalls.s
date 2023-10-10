@@ -26,3 +26,16 @@ section .data:
 
     outputMsg db "You have entered: "
     lenOutputMsg equ $ - outputMsg
+
+section .text:
+    global _start
+
+_start:
+    mov edx, lenInputMsg
+    mov ecx, inputMsg
+    mov ebx, 1
+    mov eax, 4
+    int 0x80
+
+    mov eax, 1
+    int 0x80
