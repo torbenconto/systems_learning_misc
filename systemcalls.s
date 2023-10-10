@@ -27,15 +27,31 @@ section .data:
     outputMsg db "You have entered: "
     lenOutputMsg equ $ - outputMsg
 
+section .bss:
+    num resb 5
+
 section .text:
     global _start
 
 _start:
-    mov edx, lenInputMsg
-    mov ecx, inputMsg
-    mov ebx, 1
-    mov eax, 4
-    int 0x80
+    mov edx, lenInputMsg  ; Input Message Length
+    mov ecx, inputMsg     ; Message to Write
+    mov ebx, 1            ; Stdout
+    mov eax, 4            ;                     Syscall 4 = sys_write
+    int 0x80              ; Call Kernel
 
-    mov eax, 1
+    mov edx, 5            ; Len of Number
+    mov ecx, num          ; Write to "num" which is 5 reserved bytes
+    mov ebx, 2            ; Stdin
+    mov eax, 3            ;                     Syscall 3 = sys_read
+    int 0x80              ; Call Kernel
+    
+    mov edx, lenOutputMsg ; Output Message Length
+    mov ecx, outputMsg    ; Message to Write
+    mov ebx, 1            ; Stdout
+    mov eax, 4            ;                     Syscall 4 = sys_write
+    int 0x80              ; Call Kernel
+    
+
+    mov eax, 1            ;                     Syscall 1 = sys_exit
     int 0x80
