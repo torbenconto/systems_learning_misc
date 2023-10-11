@@ -42,4 +42,4 @@ _start:
     int 0x80         ; Call kernel
 
 section .data
-    name db "Alex Lastname"
+    name db "Alex Lastname "
