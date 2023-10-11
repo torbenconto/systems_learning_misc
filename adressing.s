@@ -19,3 +19,27 @@
 ; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ; THE SOFTWARE.
 ;
+
+section .text
+    global _start
+
+_start: 
+    mov edx, 13      ; Len of "name"
+    mov ecx, name    ; Message to write
+    mov ebx, 1       ; stdout
+    mov eax, 4       ; sys_write
+    int 0x80         ; Call kernel
+
+    mov [name], dword "John" ; If the name is not the same length it will not replace my name properly in memory
+
+    mov edx, 13      ; Len of new "name"
+    mov ecx, name    ; Message to write
+    mov ebx, 1       ; stdout
+    mov eax, 4       ; sys_write
+    int 0x80         ; Call kernel
+
+    mov eax, 1       ; sys_exit
+    int 0x80         ; Call kernel
+
+section .data
+    name db "Alex Lastname"
